@@ -24,10 +24,6 @@ const links = [
 export default function NavLinks() {
   const pathname = usePathname();
 
-  for (let i = 0; i < 10; i++) {
-    console.log(`hello ${i + 1} times`);
-  }
-
   return (
     <>
       {links.map((link) => {
