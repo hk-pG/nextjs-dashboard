@@ -1,4 +1,5 @@
-import { db } from "@vercel/postgres";
+import { db, sql } from "@vercel/postgres";
+import type { Revenue } from "../lib/definitions";
 
 const client = await db.connect();
 
@@ -13,9 +14,19 @@ async function listInvoices() {
   return data.rows;
 }
 
+async function listRevenue() {
+  try {
+    const data = await sql<Revenue>`SELECT * FROM revenue;`
+    return data.rows;
+  } catch (error) {
+    console.trace(error);
+    return {};
+  }
+}
+
 export async function GET() {
   try {
-    return Response.json(await listInvoices());
+    return Response.json(await listRevenue());
   } catch (error) {
     return Response.json({ error }, { status: 500 });
   }
