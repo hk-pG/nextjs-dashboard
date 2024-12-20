@@ -15,10 +15,7 @@
     }
   },
   "lint-staged": {
-    "*.ts?(x)": [
-      "biome check --write",
-      "git add"
-    ]
+    "*.ts?(x)": ["biome check --write"]
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

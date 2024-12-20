@@ -10,7 +10,6 @@ import {
 import { Suspense } from 'react';
 
 export default async function Page() {
-  // fetch data
   const {
     totalPaidInvoices,
     totalPendingInvoices,

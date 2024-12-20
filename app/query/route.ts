@@ -1,8 +1,12 @@
-import { db, sql } from "@vercel/postgres";
-import type { Revenue } from "../lib/definitions";
+import { db, sql } from '@vercel/postgres';
+import type { Revenue } from '../lib/definitions';
 
 const client = await db.connect();
 
+/**
+ * fetches the list of invoices
+ * @returns  {Promise<Array<{amount: number, name: string}>>} - list of invoices
+ */
 async function listInvoices() {
   const data = await client.sql`
     SELECT invoices.amount, customers.name
@@ -16,7 +20,7 @@ async function listInvoices() {
 
 async function listRevenue() {
   try {
-    const data = await sql<Revenue>`SELECT * FROM revenue;`
+    const data = await sql<Revenue>`SELECT * FROM revenue;`;
     return data.rows;
   } catch (error) {
     console.trace(error);
